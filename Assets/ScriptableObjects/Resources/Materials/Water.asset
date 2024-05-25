@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d7afa7f6c64183a81bb03780cb0e74, type: 3}
+  m_Name: Water
+  m_EditorClassIdentifier: 
+  resourceName: Water
+  constituents:
+  - element: {fileID: 11400000, guid: 803aedea6c30c4cce949fb483e87858c, type: 2}
+    count: 2
+  - element: {fileID: 11400000, guid: b2d7bac4493ad489e837e63ace75560b, type: 2}
+    count: 1
+  symbol: H2O
+  atomicWeight: 18
