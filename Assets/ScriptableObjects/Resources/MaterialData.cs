@@ -23,7 +23,7 @@ namespace Approacheth
         [Header("Constituents")]
         public ElementConstituent[] constituents;
 
-        [Header("Symbol")]
+        [Header("Symbol")]//TODO: Make auto-compute
         public string symbol;
         
         [Header("Computed Molecular Weight")]
