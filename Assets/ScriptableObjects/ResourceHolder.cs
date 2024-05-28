@@ -12,14 +12,12 @@ namespace Approacheth
         public int count;
     }
 
-    [CreateAssetMenu(fileName = "newResourceHolder", menuName = "ScriptableObjects/SpaceObject/ResourceHolder")]
-    public class ResourceHolder : ScriptableObject
+    public class ResourceHolder : MonoBehaviour
     {
 
-        [Header("Resources")]
         public List<ResourceAndAmount> resources = new List<ResourceAndAmount>();
 
-        public bool hasResource(string resourceName, int quantity)
+        public bool HasResource(string resourceName, int quantity)
         {
             foreach (ResourceAndAmount resourceAndAmount in resources)
             {
@@ -31,8 +29,5 @@ namespace Approacheth
             return false;
         }
 
-        public void OnEnable()
-        {
-        }
     }
 }
