@@ -15,6 +15,7 @@ namespace Approacheth.UI.RealObjects.KindWindows
             titleText.text = spaceObject.name;
             iconImage.sprite = spaceObject.icon;
             synopsisText.text = spaceObject.synopsis;
+            Debug.Log("C");
         }
     }
 
