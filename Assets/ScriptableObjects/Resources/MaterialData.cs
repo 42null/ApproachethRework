@@ -23,8 +23,8 @@ namespace Approacheth
         [Header("Constituents")]
         public ElementConstituent[] constituents;
 
-        [Header("Symbol")]//TODO: Make auto-compute
-        public string symbol;
+        [Header("Computed Symbol")]
+        public string symbol = "";
         
         [Header("Computed Molecular Weight")]
         public float atomicWeight = -1;
@@ -32,12 +32,24 @@ namespace Approacheth
 
         public void OnEnable()
         {
+
+        }
+
+        public void OnValidate()
+        {
+            // Calculate atomic weight
+            // Calculate symbol
             float tmpWeight = 0.0f;
+            string tmpSymbol = "";
+            
             foreach (ElementConstituent constituent in constituents)
             {
                 tmpWeight += constituent.element.atomicWeight * constituent.count;
+                tmpSymbol += constituent.element.symbol + (constituent.count>1? constituent.count : "");
             }
             atomicWeight = tmpWeight;
+            symbol       = tmpSymbol;
+            
         }
     }
 }

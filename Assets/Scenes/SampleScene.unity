@@ -341,7 +341,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
   - resource: {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
+    count: 30
+  - resource: {fileID: 11400000, guid: 3330cd9451153412aa3e082e4d53e2fb, type: 2}
     count: 80
+  - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
+    count: 40
 --- !u!58 &288378886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -499,9 +503,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8185f9277b454252ae703c05b99a6781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildChildren: 00000000
   titleText: {fileID: 0}
   iconImage: {fileID: 0}
   synopsisText: {fileID: 0}
+  segmentHolder: {fileID: 0}
+  segments: []
+  segmentPrefab: {fileID: 0}
+  resourceDisplayBoxPrefab: {fileID: 0}
   resourcesListParent: {fileID: 0}
   resourceTextPrefab: {fileID: 0}
 --- !u!212 &1306690306

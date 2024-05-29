@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Approacheth.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -13,7 +14,8 @@ namespace Approacheth
     {
         public UIConfig uiConfig;
         private UIWindowFactory _uiFactory;
-        
+
+        private GameObject _createdWindow = null;
         
         
         public ResourceHolder resources;
@@ -33,7 +35,15 @@ namespace Approacheth
             // Open the UI window when the object is clicked
             if (_uiFactory != null)
             {
-                _uiFactory.CreateWindow(uiConfig, this);
+                if (_createdWindow == null)
+                {
+                    _createdWindow = _uiFactory.CreateWindow(uiConfig, this);
+                }
+                else
+                {
+                    _createdWindow.GetComponent<IUIWindow>().Close();
+                    _createdWindow = null;
+                }
             }
         }
     }
