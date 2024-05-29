@@ -9,13 +9,18 @@ namespace Approacheth.UI
     public class UIWindowFactory : MonoBehaviour
     {
         public Transform canvasTransform;
+
+        public Vector3 popupOffset = new Vector3(0, 0, 0);
     
         public void CreateWindow(UIConfig uiConfig, SpaceObject spaceObject)
         {
             Vector3 spritePosition = spaceObject.GetComponent<Transform>().position;
+            
             // Convert the world position to screen space
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(spritePosition);
-            
+
+            screenPosition += popupOffset*2;//TODO: Make based off of size of sprite
+                
             GameObject windowInstance = Instantiate(uiConfig.uiPrefab, screenPosition, Quaternion.identity, canvasTransform);
             IUIWindow uiWindow = windowInstance.GetComponent<IUIWindow>();
             
@@ -23,11 +28,9 @@ namespace Approacheth.UI
             if (uiWindow != null)
             {
                 uiWindow.Setup(uiConfig, spaceObject);
-                Debug.Log("A");
             }
             else
             {
-                Debug.Log("B");
                 Debug.LogError("The UI prefab does not implement IUIWindow interface.");
             }
         }

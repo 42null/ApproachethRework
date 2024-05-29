@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasTransform: {fileID: 32874541}
+  popupOffset: {x: 0, y: 110, z: 0}
 --- !u!4 &2110830495
 Transform:
   m_ObjectHideFlags: 0
