@@ -11,16 +11,18 @@ namespace Approacheth.UI.RealObjects.KindWindows
 
     public class BaseUIWindow : MonoBehaviour, IUIWindow, IDragHandler, IBeginDragHandler
     {
-        public UIWindowFactory.SEGMENTS[] buildChildren = new UIWindowFactory.SEGMENTS[] { UIWindowFactory.SEGMENTS.MADE_FROM_RESOUCES };
-        
+        public UIWindowFactory.SEGMENTS[] buildChildren = new UIWindowFactory.SEGMENTS[2]
+        {
+            UIWindowFactory.SEGMENTS.MADE_FROM_RESOUCES,
+            UIWindowFactory.SEGMENTS.BUILD_BAY
+        }; 
+            
         public Text titleText;
         public Image iconImage;
         public Text synopsisText;
         
         public GameObject segmentHolder;
         public List<GameObject> segments;
-        public GameObject segmentPrefab;
-        public GameObject resourceDisplayBoxPrefab;
 
         public GameObject draggableWindowBar;
         
@@ -34,21 +36,16 @@ namespace Approacheth.UI.RealObjects.KindWindows
             iconImage.sprite = spaceObject.icon;
             synopsisText.text = spaceObject.synopsis;
 
-            // foreach (var resource in spaceObject.resources.resources)
-            // {
-            //     GameObject resourceDisplayBox = Instantiate(resourceDisplayBoxPrefab, segments[0].transform);
-            //     ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
-            //     boxDataStorageScript.symbol.text = resource.resource.symbol;
-            //     boxDataStorageScript.amount.text = resource.count.ToString();
-            // }
-            
-            
-            // Set up draggable
-            
         }
 
         public UIWindowFactory.SEGMENTS[] GetBuildSegments()
         {
+            buildChildren = new UIWindowFactory.SEGMENTS[2];
+            buildChildren[0] = UIWindowFactory.SEGMENTS.MADE_FROM_RESOUCES;
+            buildChildren[1] = UIWindowFactory.SEGMENTS.BUILD_BAY;
+            Debug.Log(buildChildren.Length);
+            Debug.Log(buildChildren[0]);
+            Debug.Log(buildChildren[1]);
             return buildChildren;
         }
 

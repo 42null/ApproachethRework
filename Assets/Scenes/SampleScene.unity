@@ -509,8 +509,7 @@ MonoBehaviour:
   synopsisText: {fileID: 0}
   segmentHolder: {fileID: 0}
   segments: []
-  segmentPrefab: {fileID: 0}
-  resourceDisplayBoxPrefab: {fileID: 0}
+  draggableWindowBar: {fileID: 0}
   resourcesListParent: {fileID: 0}
   resourceTextPrefab: {fileID: 0}
 --- !u!212 &1306690306
@@ -705,7 +704,7 @@ GameObject:
   - component: {fileID: 2110830495}
   - component: {fileID: 2110830494}
   m_Layer: 0
-  m_Name: UI
+  m_Name: UI Factory & Control
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -725,6 +724,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasTransform: {fileID: 32874541}
   popupOffset: {x: 0, y: 110, z: 0}
+  segmentPrefab: {fileID: 3419234056562527159, guid: a0d806308ef0043af9549c6ebe783c11, type: 3}
+  resourceDisplayBoxPrefab: {fileID: 1737829772835973529, guid: b1f1494778cd74bdd9a862a173986221, type: 3}
+  buildBayPrefab: {fileID: 4337512479636721056, guid: 4015c1d3ba5ba4109a194e3ce2082682, type: 3}
+  buildableRecipePrefab: {fileID: 1737829772835973529, guid: 3178a843bebe34c9284c72807dce502c, type: 3}
 --- !u!4 &2110830495
 Transform:
   m_ObjectHideFlags: 0

@@ -12,6 +12,12 @@ namespace Approacheth.UI
     {
         public Transform canvasTransform;
         public Vector3 popupOffset = new Vector3(0, 0, 0);
+        public GameObject segmentPrefab;
+        public GameObject resourceDisplayBoxPrefab;
+        public GameObject buildBayPrefab;
+        public GameObject buildableRecipePrefab;
+        
+
         
         public enum SEGMENTS {
             MADE_FROM_RESOUCES,
@@ -26,7 +32,7 @@ namespace Approacheth.UI
             // Convert the world position to screen space
             Vector3 screenPosition = Camera.main.WorldToScreenPoint(spritePosition);
 
-            screenPosition += popupOffset*2;//TODO: Make based off of size of sprite
+            screenPosition += popupOffset*2; //TODO: Make based off of size of sprite
                 
             GameObject windowInstance = Instantiate(uiConfig.uiPrefab, screenPosition, Quaternion.identity, canvasTransform);
             BaseUIWindow uiWindow = windowInstance.GetComponent<IUIWindow>() as BaseUIWindow;//TODO: Do better
@@ -34,34 +40,62 @@ namespace Approacheth.UI
             
             if (uiWindow != null)
             {
+                // Store to avoid repeat calling
+                UIWindowFactory.SEGMENTS[] buildSegments = uiWindow.GetBuildSegments();
+                // uiWindow.segmentPrefab.transform.up-uiWindow.segmentPrefab.transform.;
+                Vector3 segmentOffset = new Vector3(0,0, 0);
+                
                 // Create segments 
-                for (int i = 0; i < uiWindow.GetBuildSegments().Length; i++)
+                for(int i = 0; i < buildSegments.Length; i++)
                 {
-                    GameObject segment = Instantiate(uiWindow.segmentPrefab, uiWindow.segmentHolder.transform.position, Quaternion.identity, uiWindow.segmentHolder.transform);
-                    segment.name = "Built From Resources";
-
-                    // Vector3 resourceDisplayBoxPrefabSize = uiWindow.resourceDisplayBoxPrefab.GetComponent<SpriteRenderer>().bounds.size;
-                    // Debug.Log("resourceDisplayBoxPrefabSize "+resourceDisplayBoxPrefabSize.x);
-                    Vector3 resourceDisplayBoxPrefabSize = new Vector3(100, 200, 0);
-                    
-                    for(int j = 0; j < spaceObject.resources.resources.Count; j++)
+                    GameObject segment = Instantiate(segmentPrefab, uiWindow.segmentHolder.transform.position + segmentOffset, Quaternion.identity, uiWindow.segmentHolder.transform);
+                    UIWindowFactory.SEGMENTS segmentType = buildSegments[i];
+                    if (segmentType == SEGMENTS.MADE_FROM_RESOUCES)
                     {
-                        ResourceAndAmount resource = spaceObject.resources.resources[j];
                         
-                        GameObject resourceDisplayBox = Instantiate(uiWindow.resourceDisplayBoxPrefab, segment.transform.position + new Vector3(resourceDisplayBoxPrefabSize.x*
-                            (j-1),50,0), Quaternion.identity, segment.transform);
-                        ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
-                        boxDataStorageScript.symbol.text = resource.resource.symbol;
-                        boxDataStorageScript.amount.text = resource.count.ToString();
+                        segment.name = "Built From Resources";
+
+                        // Vector3 resourceDisplayBoxPrefabSize = uiWindow.resourceDisplayBoxPrefab.GetComponent<SpriteRenderer>().bounds.size;
+                        // Debug.Log("resourceDisplayBoxPrefabSize "+resourceDisplayBoxPrefabSize.x);
+                        Vector3 resourceDisplayBoxPrefabSize = new Vector3(100, 200, 0);
+                        
+                        for(int j = 0; j < spaceObject.resources.resources.Count; j++)
+                        {
+                            ResourceAndAmount resource = spaceObject.resources.resources[j];
+                            
+                            GameObject resourceDisplayBox = Instantiate(resourceDisplayBoxPrefab, segment.transform.position + new Vector3(resourceDisplayBoxPrefabSize.x*
+                                (j) - 140,0,0), Quaternion.identity, segment.transform);
+                            ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
+                            boxDataStorageScript.symbol.text = resource.resource.symbol;
+                            boxDataStorageScript.amount.text = resource.count.ToString();
+                        }
+                    
                     }
-                    
-                    
+                    else if(segmentType == SEGMENTS.BUILD_BAY)
+                    {
+                        segment.name = "Build Bay";
+                        GameObject buildBayGO = Instantiate(buildBayPrefab, segment.transform.position, Quaternion.identity, segment.transform);
+                        Buildbay buildbaySc = buildBayGO.gameObject.GetComponent<Buildbay>();
+
+                        Vector3 offset = new Vector3(0, -40,0);
+                        // for(int j = 0; j < buildbaySc.buildables.Count; j++)
+                        int j = 0;
+                        foreach (BuildData buildableRecipe in buildbaySc.buildables)
+                        {
+                            GameObject buildableRecipeDisplay = Instantiate(buildableRecipePrefab, buildBayGO.transform.position + offset, Quaternion.identity, segment.transform);
+                            buildableRecipeDisplay.name = "Buildable Recipe - "+buildableRecipe.name;
+                            RecipeDisplayBox recipeDisplayBox = buildableRecipeDisplay.gameObject.GetComponent<RecipeDisplayBox>();
+                            recipeDisplayBox.buildDataRecipe = buildableRecipe; 
+                                
+                            j++;
+                            offset.y -= 100;
+                        }
+
+                    }
                     uiWindow.segments.Add(segment);
+                    segmentOffset.y -= 200;
+
                 }
-                // if (buildChildren.Contains(UIWindowFactory.))
-                // {
-                //
-                // }                
                 
                 uiWindow.Setup(uiConfig, spaceObject);
             }
