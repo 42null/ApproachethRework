@@ -9,6 +9,7 @@ namespace Approacheth.UI.RealObjects.KindWindows.Prefabs
     {
         public Text symbol; 
         public Text amount; 
+        public Text amountMissing; 
         
         void Start()
         {

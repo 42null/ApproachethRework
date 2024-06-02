@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950335701108456695521d9561c38722, type: 3}
+  m_Name: SpaceshipUI
+  m_EditorClassIdentifier: 
+  uiPrefab: {fileID: 8442356848113189545, guid: 508138a8c2dea4359a12a6aee37b2594, type: 3}
+  windowTitle: 
+  windowIcon: {fileID: 0}

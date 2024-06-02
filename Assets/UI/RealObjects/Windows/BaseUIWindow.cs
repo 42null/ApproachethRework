@@ -11,10 +11,9 @@ namespace Approacheth.UI.RealObjects.KindWindows
 
     public class BaseUIWindow : MonoBehaviour, IUIWindow, IDragHandler, IBeginDragHandler
     {
-        public UIWindowFactory.SEGMENTS[] buildChildren = new UIWindowFactory.SEGMENTS[2]
+        public UIWindowFactory.SEGMENTS[] buildChildren = new UIWindowFactory.SEGMENTS[1]
         {
             UIWindowFactory.SEGMENTS.MADE_FROM_RESOUCES,
-            UIWindowFactory.SEGMENTS.BUILD_BAY
         }; 
             
         public Text titleText;
@@ -40,12 +39,6 @@ namespace Approacheth.UI.RealObjects.KindWindows
 
         public UIWindowFactory.SEGMENTS[] GetBuildSegments()
         {
-            buildChildren = new UIWindowFactory.SEGMENTS[2];
-            buildChildren[0] = UIWindowFactory.SEGMENTS.MADE_FROM_RESOUCES;
-            buildChildren[1] = UIWindowFactory.SEGMENTS.BUILD_BAY;
-            Debug.Log(buildChildren.Length);
-            Debug.Log(buildChildren[0]);
-            Debug.Log(buildChildren[1]);
             return buildChildren;
         }
 

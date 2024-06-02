@@ -204,8 +204,12 @@ MonoBehaviour:
   contentsArea: {fileID: 838353763390034887}
   HeadbarText: {fileID: 7701200842403588093}
   buildables:
-  - {fileID: 11400000, guid: ddc6357246e624a3bb78d5aae540184b, type: 2}
-  - {fileID: 11400000, guid: ddc6357246e624a3bb78d5aae540184b, type: 2}
+  - {fileID: 11400000, guid: 0fb0deb8e77c047cc8950d2f19bc5a49, type: 2}
+  - {fileID: 11400000, guid: 4ef0e1d9f98bd492888508c47f27e47b, type: 2}
+  resources: {fileID: 0}
+  recipeObjects: []
+  buildableRecipePrefab: {fileID: 0}
+  recipeObsHolder: {fileID: 838353763390034887}
 --- !u!1 &5689268115603369486
 GameObject:
   m_ObjectHideFlags: 0

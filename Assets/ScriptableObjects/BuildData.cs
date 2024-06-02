@@ -8,43 +8,35 @@ namespace Approacheth
 {
     
     [System.Serializable]
-    public class MaterialConstituent
-    {
-        public MaterialData material;
-        public int count;
-    }
-    
-    [System.Serializable]
-    public class Recipe
-    {
-        public Image icon;
-    }
+    // public class Recipe
+    // {
+    //     public Image icon;
+    // }
 
     
     [CreateAssetMenu(fileName = "NewBuild", menuName = "ScriptableObjects/Builds/BuildData")]
     public class BuildData : ScriptableObject
     {
 
-        [Header("Recipe")]
-        public Recipe recipe;
-        
-        [Header("Built From")]
-        public List<MaterialConstituent> builtFrom;
+        // [Header("Recipe")]
+        // public Recipe recipe;
+
+        [Header("Built From")] public List<ResourceAndAmount> builtFrom = new List<ResourceAndAmount>();
 
         [Header("Computed Constituents")]
-        public MaterialConstituent[] constituents;
+        public ResourceAndAmount[] constituents;
         
 
         
 
         public void OnValidate()
         {
-            constituents = new MaterialConstituent[builtFrom.Count];
-            int i = 0;
-            foreach (MaterialConstituent materialConstituent in builtFrom)
-            {
-                constituents[i++] = materialConstituent;
-            }
+            // constituents = new ResourceAndAmount[builtFrom.Count];
+            // int i = 0;
+            // foreach (ResourceAndAmount materialConstituent in builtFrom)
+            // {
+            //     constituents[i++] = materialConstituent;
+            // }
         }
     }
 }

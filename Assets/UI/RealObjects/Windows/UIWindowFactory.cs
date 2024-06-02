@@ -16,9 +16,8 @@ namespace Approacheth.UI
         public GameObject resourceDisplayBoxPrefab;
         public GameObject buildBayPrefab;
         public GameObject buildableRecipePrefab;
-        
 
-        
+
         public enum SEGMENTS {
             MADE_FROM_RESOUCES,
             SUPPLIES,
@@ -77,19 +76,8 @@ namespace Approacheth.UI
                         GameObject buildBayGO = Instantiate(buildBayPrefab, segment.transform.position, Quaternion.identity, segment.transform);
                         Buildbay buildbaySc = buildBayGO.gameObject.GetComponent<Buildbay>();
 
-                        Vector3 offset = new Vector3(0, -40,0);
-                        // for(int j = 0; j < buildbaySc.buildables.Count; j++)
-                        int j = 0;
-                        foreach (BuildData buildableRecipe in buildbaySc.buildables)
-                        {
-                            GameObject buildableRecipeDisplay = Instantiate(buildableRecipePrefab, buildBayGO.transform.position + offset, Quaternion.identity, segment.transform);
-                            buildableRecipeDisplay.name = "Buildable Recipe - "+buildableRecipe.name;
-                            RecipeDisplayBox recipeDisplayBox = buildableRecipeDisplay.gameObject.GetComponent<RecipeDisplayBox>();
-                            recipeDisplayBox.buildDataRecipe = buildableRecipe; 
-                                
-                            j++;
-                            offset.y -= 100;
-                        }
+                        buildbaySc.buildableRecipePrefab = buildableRecipePrefab;
+                        buildbaySc.SetResources(spaceObject.resources);
 
                     }
                     uiWindow.segments.Add(segment);
