@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5cc61c4e224087aae46d84a4c3235b, type: 3}
   m_Name: Orbital Mirror
   m_EditorClassIdentifier: 
+  timeNoModifiers: 10
   builtFrom:
   - resource: {fileID: 11400000, guid: 167bde76b0b5345298c89719324505a4, type: 2}
     count: 5

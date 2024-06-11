@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a5cc61c4e224087aae46d84a4c3235b, type: 3}
   m_Name: Impactor Probe
   m_EditorClassIdentifier: 
+  timeNoModifiers: 2
   builtFrom:
   - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
     count: 75

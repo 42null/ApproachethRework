@@ -21,6 +21,8 @@ namespace Approacheth
         // [Header("Recipe")]
         // public Recipe recipe;
 
+        [Header("Unmodified time to complete (seconds)")] public float timeNoModifiers;
+
         [Header("Built From")] public List<ResourceAndAmount> builtFrom = new List<ResourceAndAmount>();
 
         [Header("Computed Constituents")]

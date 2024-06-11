@@ -209,6 +209,7 @@ MonoBehaviour:
   resources: {fileID: 0}
   recipeObjects: []
   buildableRecipePrefab: {fileID: 0}
+  buildingBarPrefab: {fileID: 7892248932428935926, guid: 72ff906e8253c456dae06df4aaf27b50, type: 3}
   recipeObsHolder: {fileID: 838353763390034887}
 --- !u!1 &5689268115603369486
 GameObject:

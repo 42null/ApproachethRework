@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Approacheth.UI.RealObjects.KindWindows.Prefabs;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -9,7 +10,7 @@ using Image = UnityEngine.UI.Image;
 
 namespace Approacheth
 {
-    public class RecipeDisplayBox : MonoBehaviour
+    public class RecipeDisplayBox : MonoBehaviour, IPointerDownHandler
     {
         public Image icon;
         public Image backgroundImage;
@@ -17,9 +18,15 @@ namespace Approacheth
         public GameObject suppliesBoxesDisplay;
         public GameObject suppliesBoxesDisplayBoxPrefab;
 
-        private bool _enableMake;
+        private bool _enableMake = false;
 
         public BuildData buildDataRecipe;
+        
+        
+        public delegate void ConditionMetEventHandler(BuildData recipe);
+        // Define an event based on the delegate.
+        public event ConditionMetEventHandler OnConditionTimeOverMet;
+        
         
         void Start()
         {
@@ -46,7 +53,7 @@ namespace Approacheth
         
         public void SetAsAvailable(bool available)
         {
-            this._enableMake = !available;
+            this._enableMake = available;
             if (available)
             {
                 backgroundImage.color = new Color32(0,255,125,200);
@@ -58,13 +65,15 @@ namespace Approacheth
             }
         }
         
-        void OnMouseDown()
+        public void OnPointerDown(PointerEventData eventData)
         {
             if (this._enableMake)
             {
+                Debug.Log($"Click detected, trying to start production of {title.text}");
+                OnConditionTimeOverMet(buildDataRecipe);
             }
         }
-        
+
         void Update()
         {
         }

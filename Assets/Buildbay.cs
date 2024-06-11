@@ -15,10 +15,12 @@ namespace Approacheth
         public List<GameObject> recipeObjects;
         
         public GameObject buildableRecipePrefab;
+        public GameObject buildingBarPrefab;
 
         public GameObject recipeObsHolder;
 
-        
+        private RecipeDisplayBox[] childScripts;
+            
         void Start()
         {
 
@@ -50,8 +52,36 @@ namespace Approacheth
                 recipeObjectsEnumeration.MoveNext();
             }
             recipeObjectsEnumeration.Dispose();
+            
+            // Set up build listeners
+            childScripts = this.transform.GetComponentsInChildren<RecipeDisplayBox>();
+            foreach (RecipeDisplayBox childScript in childScripts)
+            {
+                // Subscribe to the child's event.
+                childScript.OnConditionTimeOverMet += ChildScript_OnConditionMet;
+            }
         }
         
+        private void ChildScript_OnConditionMet(BuildData recipe)
+        {
+            // Handle the event.
+            Debug.Log("Condition met in a child object!", recipe);
+            GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, this.transform.position, Quaternion.identity, recipeObsHolder.transform);
+            TimedActionPrefab buildableLoadingBarScript = buildableLoadingBar.GetComponent<TimedActionPrefab>();
+            buildableLoadingBarScript.timeRemaining = recipe.timeNoModifiers;
+
+        }
+        
+        void OnDestroy()
+        {
+            RecipeDisplayBox[] childScriptsForDestroy = GetComponentsInChildren<RecipeDisplayBox>();
+
+            foreach (RecipeDisplayBox childScript in childScriptsForDestroy)
+            {
+                childScript.OnConditionTimeOverMet -= ChildScript_OnConditionMet;
+            }
+        }
+
         public void SetResources(ResourceHolder resources)
         {
             this.resources = resources;
