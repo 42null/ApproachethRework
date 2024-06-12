@@ -7,19 +7,15 @@ using UnityEngine.UI;
 namespace Approacheth
 {
     
-    [System.Serializable]
-    // public class Recipe
-    // {
-    //     public Image icon;
-    // }
 
-    
     [CreateAssetMenu(fileName = "NewBuild", menuName = "ScriptableObjects/Builds/BuildData")]
     public class BuildData : ScriptableObject
     {
 
         // [Header("Recipe")]
         // public Recipe recipe;
+
+        [Header("Recipe Icon")] public Image recipeIcon;
 
         [Header("Unmodified time to complete (seconds)")] public float timeNoModifiers;
 

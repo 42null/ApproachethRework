@@ -8,6 +8,7 @@ namespace Approacheth
     public class Buildbay : MonoBehaviour
     {
         public GameObject contentsArea;
+        public GameObject inProgressTimerArea;
         public Text HeadbarText;
         
         public List<BuildData> buildables;
@@ -66,8 +67,9 @@ namespace Approacheth
         {
             // Handle the event.
             Debug.Log("Condition met in a child object!", recipe);
-            GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, this.transform.position, Quaternion.identity, recipeObsHolder.transform);
+            GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, inProgressTimerArea.transform.position, Quaternion.identity, inProgressTimerArea.transform);
             TimedActionPrefab buildableLoadingBarScript = buildableLoadingBar.GetComponent<TimedActionPrefab>();
+            buildableLoadingBarScript.icon = recipe.recipeIcon;
             buildableLoadingBarScript.timeRemaining = recipe.timeNoModifiers;
 
         }
