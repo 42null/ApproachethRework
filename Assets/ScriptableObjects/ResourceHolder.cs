@@ -71,6 +71,25 @@ namespace Approacheth
             }
             return returnMissing;
         }
+
+        public void useUpResources(List<ResourceAndAmount> resourcesToUseUp)
+        {
+            foreach (ResourceAndAmount resourceAndAmount in resources)
+            {
+                
+            }
+
+            // foreach (ResourceAndAmount resourceAndAmount in resources)
+            // {
+            //     if(resourceAndAmount.resource.name.Equals(resourceName, StringComparison.OrdinalIgnoreCase) && resourceAndAmount.count >= quantity)
+            //     {
+            //         return true;
+            //     }
+            // }
+        }
+        
+        
+        
         
         private bool HasResource(string resourceName, int quantity)
         {

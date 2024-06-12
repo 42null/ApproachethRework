@@ -213,6 +213,7 @@ GameObject:
   - component: {fileID: 1110519692884945030}
   - component: {fileID: 1122601832812030237}
   - component: {fileID: 649780784164821520}
+  - component: {fileID: 8764962239575768245}
   m_Layer: 5
   m_Name: Build Bay Prefab
   m_TagString: Untagged
@@ -303,6 +304,20 @@ MonoBehaviour:
   buildableRecipePrefab: {fileID: 0}
   buildingBarPrefab: {fileID: 7892248932428935926, guid: 72ff906e8253c456dae06df4aaf27b50, type: 3}
   recipeObsHolder: {fileID: 838353763390034887}
+--- !u!114 &8764962239575768245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337512479636721056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
 --- !u!1 &5689268115603369486
 GameObject:
   m_ObjectHideFlags: 0

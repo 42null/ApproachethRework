@@ -42,7 +42,6 @@ namespace Approacheth
                 {
                     Debug.Log("CAN BUILD "+buildablePossibility.name);
                     recipeDisplayBoxSc.SetAsAvailable(true);
-                    // buildableRecipePrefab.;
                 }
                 else
                 {
@@ -66,10 +65,12 @@ namespace Approacheth
         private void ChildScript_OnConditionMet(BuildData recipe)
         {
             // Handle the event.
-            Debug.Log("Condition met in a child object!", recipe);
+            Debug.Log("Condition to build recipe!", recipe);
+            this.resources.useUpResources();
+            
             GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, inProgressTimerArea.transform.position, Quaternion.identity, inProgressTimerArea.transform);
             TimedActionPrefab buildableLoadingBarScript = buildableLoadingBar.GetComponent<TimedActionPrefab>();
-            buildableLoadingBarScript.icon = recipe.recipeIcon;
+            buildableLoadingBarScript.icon.sprite = recipe.recipeIcon;
             buildableLoadingBarScript.timeRemaining = recipe.timeNoModifiers;
 
         }

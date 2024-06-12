@@ -12,10 +12,7 @@ namespace Approacheth
     public class BuildData : ScriptableObject
     {
 
-        // [Header("Recipe")]
-        // public Recipe recipe;
-
-        [Header("Recipe Icon")] public Image recipeIcon;
+        [Header("Recipe Icon")] public Sprite recipeIcon;
 
         [Header("Unmodified time to complete (seconds)")] public float timeNoModifiers;
 
