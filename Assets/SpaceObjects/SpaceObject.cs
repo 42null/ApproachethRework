@@ -16,6 +16,7 @@ namespace Approacheth
         private UIWindowFactory _uiFactory;
 
         private GameObject _createdWindow = null;
+        private GameObject _createdSegmentBuiltFrom = null;
         
         
         public ResourceHolder resources;
@@ -46,6 +47,17 @@ namespace Approacheth
                 }
             }
         }
+
+        public void updateResourcesDisplay()
+        {
+            _uiFactory.refreshBuiltFrom(_createdSegmentBuiltFrom, this);
+        }
+        
+        public void setCallRefreshBuiltFromWith(GameObject segment)
+        {
+            _createdSegmentBuiltFrom = segment;
+        }
+        
     }
     
     public class Asteroid : SpaceObject

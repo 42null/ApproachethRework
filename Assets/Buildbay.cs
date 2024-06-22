@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Approacheth.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,8 @@ namespace Approacheth
         public GameObject recipeObsHolder;
 
         private RecipeDisplayBox[] childScripts;
-            
+        private SpaceObject spaceObject;
+
         void Start()
         {
 
@@ -31,7 +33,6 @@ namespace Approacheth
         {
             List<GameObject>.Enumerator recipeObjectsEnumeration = recipeObjects.GetEnumerator();
             recipeObjectsEnumeration.MoveNext();
-            Debug.Log(recipeObjects.Count);
             foreach (BuildData buildablePossibility in buildables)
             {
                 Dictionary<MaterialData, int> missingResources = resources.resoucesMissingFromBuildData(buildablePossibility);
@@ -67,6 +68,9 @@ namespace Approacheth
             // Handle the event.
             Debug.Log("Condition to build recipe!", recipe);
             this.resources.useUpResources(recipe.builtFrom);
+            spaceObject.updateResourcesDisplay();
+
+            
             
             GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, inProgressTimerArea.transform.position, Quaternion.identity, inProgressTimerArea.transform);
             TimedActionPrefab buildableLoadingBarScript = buildableLoadingBar.GetComponent<TimedActionPrefab>();
@@ -115,6 +119,11 @@ namespace Approacheth
             SetupWithCheckingResources();
         }
 
+        public void SetSpaceObject(SpaceObject newSpaceObject)
+        {
+            this.spaceObject = newSpaceObject;
+        }
+            
         void Update()
         {
             
