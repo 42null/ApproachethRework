@@ -21,8 +21,8 @@ namespace Approacheth
         private bool _enableMake = false;
 
         public BuildData buildDataRecipe;
-        
-        
+        public List<GameObject> resourceDisplayBoxes = new List<GameObject>(); //TODO: Turn private & obscofiate
+
         public delegate void ConditionMetEventHandler(BuildData recipe);
         // Define an event based on the delegate.
         public event ConditionMetEventHandler OnConditionTimeOverMet;
@@ -35,6 +35,7 @@ namespace Approacheth
 
             foreach(KeyValuePair<MaterialData, int> buildMaterial in buildDataRecipe.builtFrom){
                 GameObject resourceDisplayBox = Instantiate(suppliesBoxesDisplayBoxPrefab, suppliesBoxesDisplay.transform.position + offset, Quaternion.identity, suppliesBoxesDisplay.transform);
+                resourceDisplayBoxes.Add(resourceDisplayBox);
 
                 // resourceDisplayBox.transform.position = new Vector3(500,500,0);
                 ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();

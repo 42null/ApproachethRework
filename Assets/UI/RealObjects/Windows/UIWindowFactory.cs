@@ -1,9 +1,10 @@
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Approacheth.UI.RealObjects.KindWindows;
 using Approacheth.UI.RealObjects.KindWindows.Prefabs;
-using UnityEngine;
+using System.Linq;
 
 namespace Approacheth.UI
 {
@@ -91,6 +92,16 @@ namespace Approacheth.UI
 
         public void refreshBuiltFrom(GameObject segment, SpaceObject spaceObject)
         {
+            DestroyChildrenWithName(segment.transform, "ResourceDisplayBox Prefab(Clone)");
+            // Delete all existing displays
+            // foreach(var resourceDisplayBox in spaceObject.GetComponentInChildren<RecipeDisplayBox>().resourceDisplayBoxes)
+            // {
+            //     Destroy(resourceDisplayBox);
+            // }
+
+            // GameObject resourceDisplayBox = Instantiate(suppliesBoxesDisplayBoxPrefab, suppliesBoxesDisplay.transform.position + offset, Quaternion.identity, suppliesBoxesDisplay.transform);
+            // resourceDisplayBoxes.Add(resourceDisplayBox);
+            
             Vector3 resourceDisplayBoxPrefabSize = new Vector3(100, 200, 0);
 
             Dictionary<MaterialData, int>.Enumerator resourcesEnumerator = spaceObject.resources.resources.GetEnumerator();
@@ -100,7 +111,7 @@ namespace Approacheth.UI
                 KeyValuePair<MaterialData, int> resource = resourcesEnumerator.Current;
                                 
                 GameObject resourceDisplayBox = Instantiate(resourceDisplayBoxPrefab, segment.transform.position + new Vector3(resourceDisplayBoxPrefabSize.x*
-                    (j) - 140,0,0), Quaternion.identity, segment.transform);
+                    (j) - 180,0,0), Quaternion.identity, segment.transform);
                 ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
                 boxDataStorageScript.symbol.text = resource.Key.symbol;
                 boxDataStorageScript.amount.text = resource.Value.ToString();
@@ -108,6 +119,20 @@ namespace Approacheth.UI
                 j++;
             }
             resourcesEnumerator.Dispose();
+        }
+        
+        // TODO: Better store and obtain as list to avoid searching 
+        private void DestroyChildrenWithName(Transform parent, string name)
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.name == name)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                DestroyChildrenWithName(child, name);
+            }
         }
         
     }
