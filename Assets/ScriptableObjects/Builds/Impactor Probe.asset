@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeIcon: {fileID: 21300000, guid: 11bfefd03c6c44f15a5ab86f3b530916, type: 3}
   timeNoModifiers: 2
-  builtFrom:
-  - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
-    count: 75
-  - resource: {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
-    count: 25
-  constituents:
-  - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
-    count: 75
-  - resource: {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
-    count: 25
+  builtFromKeys:
+  - {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
+  - {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
+  builtFromValues: 1400000064000000

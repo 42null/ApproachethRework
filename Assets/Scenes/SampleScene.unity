@@ -339,13 +339,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a129c618dd4ff2b941b8c6253d4b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources:
-  - resource: {fileID: 11400000, guid: 8ca7c7453afda4d5689efea2b4a56347, type: 2}
-    count: 30
-  - resource: {fileID: 11400000, guid: 3330cd9451153412aa3e082e4d53e2fb, type: 2}
-    count: 80
-  - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
-    count: 40
+  keys:
+  - {fileID: 11400000, guid: a67f48e3982994d4fa869cf97b19609d, type: 2}
+  values: 32000000
 --- !u!58 &288378886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -554,13 +550,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a129c618dd4ff2b941b8c6253d4b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources:
-  - resource: {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
-    count: 900
-  - resource: {fileID: 11400000, guid: 3330cd9451153412aa3e082e4d53e2fb, type: 2}
-    count: 50
-  - resource: {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
-    count: 200
+  keys:
+  - {fileID: 11400000, guid: a67f48e3982994d4fa869cf97b19609d, type: 2}
+  - {fileID: 11400000, guid: bf3b00130d0ef4ae1aafc70796a32f70, type: 2}
+  - {fileID: 11400000, guid: 3330cd9451153412aa3e082e4d53e2fb, type: 2}
+  - {fileID: 11400000, guid: 0b02e3f48886a4f21884610844f69b7f, type: 2}
+  values: 2c010000c80000002c010000f4010000
 --- !u!114 &627514607
 MonoBehaviour:
   m_ObjectHideFlags: 0

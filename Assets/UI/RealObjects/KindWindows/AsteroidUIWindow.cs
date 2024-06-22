@@ -26,7 +26,7 @@ namespace Approacheth.UI.RealObjects.KindWindows
                 {
                     GameObject resourceTextInstance = Instantiate(resourceTextPrefab, resourcesListParent);
                     Text resourceText = resourceTextInstance.GetComponent<Text>();
-                    resourceText.text = resource.resource.name + ": " + resource.count;
+                    resourceText.text = resource.Key.name + ": " + resource.Value;
                 }
             }
         }

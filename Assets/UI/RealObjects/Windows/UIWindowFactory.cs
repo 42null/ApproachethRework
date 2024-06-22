@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using Approacheth.UI.RealObjects.KindWindows;
 using Approacheth.UI.RealObjects.KindWindows.Prefabs;
 using UnityEngine;
@@ -57,17 +59,22 @@ namespace Approacheth.UI
                         // Vector3 resourceDisplayBoxPrefabSize = uiWindow.resourceDisplayBoxPrefab.GetComponent<SpriteRenderer>().bounds.size;
                         // Debug.Log("resourceDisplayBoxPrefabSize "+resourceDisplayBoxPrefabSize.x);
                         Vector3 resourceDisplayBoxPrefabSize = new Vector3(100, 200, 0);
-                        
-                        for(int j = 0; j < spaceObject.resources.resources.Count; j++)
+
+                        Dictionary<MaterialData, int>.Enumerator resourcesEnumerator = spaceObject.resources.resources.GetEnumerator();
+                        int j = 0;
+                        while (resourcesEnumerator.MoveNext())
                         {
-                            ResourceAndAmount resource = spaceObject.resources.resources[j];
+                            KeyValuePair<MaterialData, int> resource = resourcesEnumerator.Current;
                             
                             GameObject resourceDisplayBox = Instantiate(resourceDisplayBoxPrefab, segment.transform.position + new Vector3(resourceDisplayBoxPrefabSize.x*
                                 (j) - 140,0,0), Quaternion.identity, segment.transform);
                             ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
-                            boxDataStorageScript.symbol.text = resource.resource.symbol;
-                            boxDataStorageScript.amount.text = resource.count.ToString();
+                            boxDataStorageScript.symbol.text = resource.Key.symbol;
+                            boxDataStorageScript.amount.text = resource.Value.ToString();
+                            
+                            j++;
                         }
+                        resourcesEnumerator.Dispose();
                     
                     }
                     else if(segmentType == SEGMENTS.BUILD_BAY)

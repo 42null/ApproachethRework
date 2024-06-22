@@ -34,7 +34,7 @@ namespace Approacheth
             Debug.Log(recipeObjects.Count);
             foreach (BuildData buildablePossibility in buildables)
             {
-                List<ResourceAndAmount> missingResources = resources.resoucesMissingFromBuildData(buildablePossibility);
+                Dictionary<MaterialData, int> missingResources = resources.resoucesMissingFromBuildData(buildablePossibility);
                 Debug.Log("recipeObjectsEnumeration.Current.name, "+recipeObjectsEnumeration.Current.ToString());
                 RecipeDisplayBox recipeDisplayBoxSc = recipeObjectsEnumeration.Current.GetComponent<RecipeDisplayBox>();
                 
@@ -66,13 +66,21 @@ namespace Approacheth
         {
             // Handle the event.
             Debug.Log("Condition to build recipe!", recipe);
-            this.resources.useUpResources();
+            this.resources.useUpResources(recipe.builtFrom);
             
             GameObject buildableLoadingBar = Instantiate(buildingBarPrefab, inProgressTimerArea.transform.position, Quaternion.identity, inProgressTimerArea.transform);
             TimedActionPrefab buildableLoadingBarScript = buildableLoadingBar.GetComponent<TimedActionPrefab>();
             buildableLoadingBarScript.icon.sprite = recipe.recipeIcon;
             buildableLoadingBarScript.timeRemaining = recipe.timeNoModifiers;
+            buildableLoadingBarScript.buildData = recipe;
+            buildableLoadingBarScript.OnConditionTimeOverMet += BuildableLoadingBar_OnConditionTimeOverMet;
 
+        }
+        
+        private void BuildableLoadingBar_OnConditionTimeOverMet(BuildData recipe)
+        {
+            Debug.Log("Build complete for recipe: " + recipe.name);
+            
         }
         
         void OnDestroy()

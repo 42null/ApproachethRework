@@ -33,14 +33,14 @@ namespace Approacheth
             title.text = buildDataRecipe.name;
             Vector3 offset = new Vector3(0, 0,0);
 
-            foreach (ResourceAndAmount buildMaterial in buildDataRecipe.builtFrom){
+            foreach(KeyValuePair<MaterialData, int> buildMaterial in buildDataRecipe.builtFrom){
                 GameObject resourceDisplayBox = Instantiate(suppliesBoxesDisplayBoxPrefab, suppliesBoxesDisplay.transform.position + offset, Quaternion.identity, suppliesBoxesDisplay.transform);
 
                 // resourceDisplayBox.transform.position = new Vector3(500,500,0);
                 ResourceDisplayBox boxDataStorageScript = resourceDisplayBox.GetComponent<ResourceDisplayBox>();
                 // Debug.Log(buildMaterial.count);
-                boxDataStorageScript.symbol.text = buildMaterial.resource.symbol;
-                boxDataStorageScript.amount.text = buildMaterial.count.ToString();
+                boxDataStorageScript.symbol.text = buildMaterial.Key.symbol;
+                boxDataStorageScript.amount.text = buildMaterial.Value.ToString();
 
                 offset.x += 70;
             }

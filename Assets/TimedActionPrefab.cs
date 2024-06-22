@@ -18,12 +18,13 @@ namespace Approacheth
         public event ConditionMetEventHandler OnConditionTimeOverMet;
 
         private bool notAlreadyTriggered = true;
+        public BuildData buildData;
         
         void Start()
         {
         
         }
-
+        
         // Update is called once per frame
         void Update()
         {
@@ -36,13 +37,14 @@ namespace Approacheth
                 else
                 {
                     this.timeRemaining = 0f;
+                    notAlreadyTriggered = false;
                     // Trigger the event if there are subscribers.
                     if (OnConditionTimeOverMet != null)
                     {
-                        // OnConditionTimeOverMet();
+                        OnConditionTimeOverMet(buildData);
                     }
                 }
-                timeRemainingDisplay.text = $"{this.timeRemaining}";
+                timeRemainingDisplay.text = $"{this.timeRemaining:F2}";
             }
         }
     }
